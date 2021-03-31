@@ -33,4 +33,16 @@ const bookSeed = [
         link: "https://play.google.com/store/books/details?id=kotPYEqx7kMC&source=gbs_api"
       },
     
-]
+];
+
+db.Book
+  .remove({})
+  .then(() => db.Book.collection.insertMany(bookSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
